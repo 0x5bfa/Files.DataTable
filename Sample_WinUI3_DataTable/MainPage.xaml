@@ -1,0 +1,71 @@
+﻿<Page
+	x:Class="Sample_WinUI3_DataTable.MainPage"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="using:Sample_WinUI3_DataTable"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d">
+
+	<Page.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="ms-appx:///Controls/DataTable/DataTableColumn.xaml" />
+				<ResourceDictionary Source="ms-appx:///Controls/Sizer/SizerBase.xaml" />
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
+	</Page.Resources>
+
+	<Grid>
+
+		<ListView
+			x:Name="MainListView"
+			Margin="32"
+			Background="{ThemeResource LayerFillColorDefaultBrush}"
+			BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+			BorderThickness="1"
+			CornerRadius="4"
+			ItemsSource="{x:Bind InventoryItems}">
+
+			<ListView.Header>
+				<local:DataTable Height="40" Margin="12,0,12,0">
+					<local:DataTableColumn Width="20" CanResize="False" />
+					<local:DataTableColumn Content="Name" />
+					<local:DataTableColumn Content="File tag" />
+					<local:DataTableColumn Content="Date modified" />
+				</local:DataTable>
+			</ListView.Header>
+
+			<ListView.ItemTemplate>
+				<DataTemplate x:DataType="local:InventoryItem">
+					<local:DataTableRow>
+						<TextBlock
+							HorizontalAlignment="Left"
+							VerticalAlignment="Center"
+							Text="[x]" />
+						<TextBlock
+							HorizontalAlignment="Left"
+							VerticalAlignment="Center"
+							Text="{x:Bind Name}" />
+						<TextBlock
+							HorizontalAlignment="Left"
+							VerticalAlignment="Center"
+							Text="{x:Bind Description}" />
+						<TextBlock
+							HorizontalAlignment="Left"
+							VerticalAlignment="Center"
+							Text="{x:Bind Quantity}" />
+					</local:DataTableRow>
+				</DataTemplate>
+			</ListView.ItemTemplate>
+
+			<ListView.ItemContainerStyle>
+				<Style BasedOn="{StaticResource DefaultListViewItemStyle}" TargetType="ListViewItem">
+					<Setter Property="HorizontalContentAlignment" Value="Left" />
+				</Style>
+			</ListView.ItemContainerStyle>
+
+		</ListView>
+
+	</Grid>
+</Page>
