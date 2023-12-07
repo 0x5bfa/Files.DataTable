@@ -2,45 +2,27 @@
 // Licensed under the MIT License. See the LICENSE.
 
 using CommunityToolkit.WinUI.UI;
-using Microsoft.UI.Input;
 using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Automation;
-using Microsoft.UI.Xaml.Automation.Peers;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Input;
-using System.Collections.Specialized;
-using System.Runtime.CompilerServices;
-using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 
 namespace Sample_WinUI3_DataTable;
 
 public partial class DataTableRow : Panel
 {
-    private DataTable _parentTable;
+    private DataTable? _parentTable;
 
     public DataTableRow()
     {
-        Unloaded += DataRow_Unloaded;
-    }
-
-    private void DataRow_Unloaded(object sender, RoutedEventArgs e)
-    {
-        // Remove our references on unloaded
-        _parentTable?.Rows.Remove(this);
-        _parentTable = null;
+        Unloaded += (sender, e) => { _parentTable = null; };
     }
 
     private void GetParentDataTable()
     {
-        if (this.FindAscendant<ItemsPresenter>() is ItemsPresenter itemsPresenter)
+        if (this.FindAscendant<ItemsPresenter>() is ItemsPresenter itemsPresenter &&
+            itemsPresenter.Header is DataTable dataTable)
         {
-            if (itemsPresenter.Header is DataTable dataTable)
-            {
-                _parentTable = dataTable;
-                _parentTable.Rows.Add(this);
-            }
+            _parentTable = dataTable;
         }
     }
 
@@ -91,23 +73,33 @@ public partial class DataTableRow : Panel
 
     protected override Size ArrangeOverride(Size finalSize)
     {
+        if (_parentTable is null)
+            return finalSize;
+
         int column = 0;
         double x = 0;
         double width = 0;
 
         int i = 0;
-        foreach (UIElement child in Children.Where(static e => e.Visibility == Visibility.Visible))
+
+        foreach (FrameworkElement child in Children.Where(e => e.Visibility == Visibility.Visible).Cast<FrameworkElement>())
         {
-            if (column < _parentTable.Children.Count)
-            {
-                width = (_parentTable.Children[column] as DataTableColumn)?.ActualWidth ?? 0;
-            }
+            width = (_parentTable.Children[column] as DataTableColumn)?.ActualWidth ?? 0;
 
             if (_parentTable.Children[column] is DataTableColumn dataColumn &&
                 !dataColumn.CanResize)
-                 width += 8;
-
-            child.Arrange(new Rect(x, 0, width, finalSize.Height));
+            {
+                // Add resizer width virtually
+                width += 8;
+                child.Arrange(new(x, 0, width, finalSize.Height));
+            }
+            else
+            {
+                // Avoid using the area of the next column
+                child.Margin = new(0, 0, 12, 0);
+                child.Arrange(new(x, 0, width, finalSize.Height));
+                child.MaxWidth = width;
+            }
 
             x += width;
             i++;

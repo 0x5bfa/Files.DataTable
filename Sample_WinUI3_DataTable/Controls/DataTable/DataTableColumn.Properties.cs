@@ -1,14 +1,8 @@
 ﻿// Copyright (c) 2023 Files Community
 // Licensed under the MIT License. See the LICENSE.
 
-using CommunityToolkit.WinUI.UI;
-using Microsoft.UI.Input;
 using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Automation;
-using Microsoft.UI.Xaml.Automation.Peers;
-using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Input;
 
 namespace Sample_WinUI3_DataTable;
 
@@ -46,7 +40,6 @@ public partial class DataTableColumn : ButtonBase
 
     private static void DesiredWidth_PropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        // If the developer updates the size of the column, update our internal copy
         if (d is DataTableColumn col)
             col.CurrentWidth = col.DesiredWidth;
     }

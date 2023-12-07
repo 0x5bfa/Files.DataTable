@@ -20,6 +20,7 @@
 		<Style.Setters>
 			<!--  TODO: This is going to be different between ListView and HeaderedItemsControl, how do we want to handle?  -->
 			<Setter Property="Padding" Value="12,0" />
+			<Setter Property="MinWidth" Value="64" />
 			<Setter Property="HorizontalContentAlignment" Value="Stretch" />
 			<Setter Property="VerticalContentAlignment" Value="Center" />
 			<Setter Property="Foreground" Value="{ThemeResource TextFillColorSecondaryBrush}" />
@@ -43,14 +44,15 @@
 								BorderBrush="{ThemeResource DividerStrokeColorDefault}"
 								BorderThickness="1" />
 
-							<ContentPresenter
+							<TextBlock
 								Margin="{TemplateBinding Padding}"
 								HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
 								VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-								Content="{TemplateBinding Content}"
 								FontSize="12"
 								FontWeight="SemiBold"
-								Foreground="{TemplateBinding Foreground}" />
+								Foreground="{TemplateBinding Foreground}"
+								Text="{TemplateBinding Content}"
+								TextTrimming="CharacterEllipsis" />
 
 							<local:ContentSizer
 								x:Name="PART_ColumnSizer"

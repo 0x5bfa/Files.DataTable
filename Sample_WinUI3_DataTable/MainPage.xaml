@@ -29,7 +29,10 @@
 
 			<ListView.Header>
 				<local:DataTable Height="40" Margin="12,0,12,0">
-					<local:DataTableColumn Width="40" CanResize="False" />
+					<local:DataTableColumn
+						MinWidth="0"
+						CanResize="False"
+						DesiredWidth="40" />
 					<local:DataTableColumn Content="Name" />
 					<local:DataTableColumn Content="File tag" />
 					<local:DataTableColumn Content="Date modified" />
@@ -38,7 +41,7 @@
 
 			<ListView.ItemTemplate>
 				<DataTemplate x:DataType="local:StorageItem">
-					<local:DataTableRow HorizontalAlignment="Left">
+					<local:DataTableRow HorizontalAlignment="Left" Background="Blue">
 						<Image
 							Width="20"
 							Height="20"
