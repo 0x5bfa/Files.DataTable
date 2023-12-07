@@ -45,8 +45,6 @@ public partial class DataTable : Panel
         foreach (DataTableColumn column in elements)
             fixedWidth += column.DesiredWidth.Value;
 
-        fixedWidth += (elements.Count() - 1) * ColumnSpacing;
-
         foreach (DataTableColumn column in elements)
         {
             if (column.CurrentWidth.IsAbsolute)
@@ -104,7 +102,7 @@ public partial class DataTable : Panel
                 column.Arrange(new Rect(x, 0, width, finalSize.Height));
             }
 
-            x += width + ColumnSpacing;
+            x += width;
         }
 
         return finalSize;

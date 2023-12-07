@@ -1,3 +1,4 @@
+using Microsoft.UI;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -12,14 +13,15 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using WinUIEx;
 
 namespace Sample_WinUI3_DataTable
 {
 	/// <summary>
 	/// An empty window that can be used on its own or navigated to within a Frame.
 	/// </summary>
-	public sealed partial class MainWindow : Window
-	{
+	public sealed partial class MainWindow : WindowEx
+    {
 		public MainWindow()
 		{
 			this.InitializeComponent();
@@ -27,7 +29,11 @@ namespace Sample_WinUI3_DataTable
 
 		public void NavigateToMainPage()
 		{
-			MainFrame.Navigate(typeof(MainPage));
+            AppWindow.TitleBar.ExtendsContentIntoTitleBar = true;
+            AppWindow.TitleBar.ButtonBackgroundColor = Colors.Transparent;
+            AppWindow.TitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
+
+            MainFrame.Navigate(typeof(MainPage));
 		}
 	}
 }

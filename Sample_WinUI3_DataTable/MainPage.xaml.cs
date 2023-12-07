@@ -24,41 +24,41 @@ namespace Sample_WinUI3_DataTable
     public sealed partial class MainPage : Page
     {
 
-        public ObservableCollection<InventoryItem> InventoryItems { get; set; } = new()
+        public ObservableCollection<StorageItem> InventoryItems { get; set; } = new()
         {
             new()
             {
-                Id = 1002,
-                Name = "Hydra",
-                Description = "Multiple Launch Rocket System-2 Hydra",
-                Quantity = 1,
+                Icon = "ms-appx:///Assets/FolderIcon.png",
+                Name = "getting in blow nothing I.png",
+                Tags = "Home, Workspace",
+                DateModified = "5/12/2023 3:00 PM",
             },
             new()
             {
-                Id = 3456,
-                Name = "MA40 AR",
-                Description = "Regular assault rifle - updated version of MA5B or MA37 AR",
-                Quantity = 4,
+                Icon = "ms-appx:///Assets/FolderIcon.png",
+                Name = "secret old it you come plans Let's.jpg",
+                Tags = "Home, Workspace",
+                DateModified = "5/12/2023 3:00 PM",
             },
             new()
             {
-                Id = 5698,
-                Name = "Needler",
-                Description = "Alien weapon well-known for its iconic design with pink crystals",
-                Quantity = 2,
+                Icon = "ms-appx:///Assets/FolderIcon.png",
+                Name = "to your it your.bat",
+                Tags = "Home, Workspace",
+                DateModified = "5/12/2023 3:00 PM",
             },
             new()
             {
-                Id = 7043,
-                Name = "Ravager",
-                Description = "An incendiary plasma launcher",
-                Quantity = 1,
+                Icon = "ms-appx:///Assets/FolderIcon.png",
+                Name = "Besides, sort and in.pdf",
+                Tags = "Study",
+                DateModified = "5/12/2023 3:00 PM",
             },
         };
 
         public MainPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }

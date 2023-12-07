@@ -10,14 +10,14 @@
 			<StaticResource x:Key="SizerBaseBackgroundPointerOver" ResourceKey="ControlAltFillColorTertiaryBrush" />
 			<StaticResource x:Key="SizerBaseBackgroundPressed" ResourceKey="ControlAltFillColorQuarternaryBrush" />
 			<StaticResource x:Key="SizerBaseBackgroundDisabled" ResourceKey="ControlAltFillColorDisabledBrush" />
-			<StaticResource x:Key="SizerBaseForeground" ResourceKey="ControlStrongFillColorDefaultBrush" />
+			<StaticResource x:Key="SizerBaseForeground" ResourceKey="DividerStrokeColorDefaultBrush" />
 		</ResourceDictionary>
 		<ResourceDictionary x:Key="Light">
 			<StaticResource x:Key="SizerBaseBackground" ResourceKey="ControlAltFillColorTransparentBrush" />
 			<StaticResource x:Key="SizerBaseBackgroundPointerOver" ResourceKey="ControlAltFillColorTertiaryBrush" />
 			<StaticResource x:Key="SizerBaseBackgroundPressed" ResourceKey="ControlAltFillColorQuarternaryBrush" />
 			<StaticResource x:Key="SizerBaseBackgroundDisabled" ResourceKey="ControlAltFillColorDisabledBrush" />
-			<StaticResource x:Key="SizerBaseForeground" ResourceKey="ControlStrongFillColorDefaultBrush" />
+			<StaticResource x:Key="SizerBaseForeground" ResourceKey="DividerStrokeColorDefaultBrush" />
 		</ResourceDictionary>
 		<ResourceDictionary x:Key="HighContrast">
 			<StaticResource x:Key="SizerBaseBackground" ResourceKey="ControlAltFillColorTransparentBrush" />
@@ -28,9 +28,8 @@
 		</ResourceDictionary>
 	</ResourceDictionary.ThemeDictionaries>
 
-	<x:Double x:Key="SizerBaseThumbHeight">24</x:Double>
-	<x:Double x:Key="SizerBaseThumbWidth">4</x:Double>
-	<x:Double x:Key="SizerBaseThumbRadius">2</x:Double>
+	<x:Double x:Key="SizerBaseThumbHeight">40</x:Double>
+	<x:Double x:Key="SizerBaseThumbWidth">1</x:Double>
 	<Thickness x:Key="SizerBasePadding">4</Thickness>
 
 	<!--  Implicitly applied default style  -->
@@ -44,7 +43,7 @@
 		<Setter Property="IsFocusEngagementEnabled" Value="True" />
 		<Setter Property="MinHeight" Value="8" />
 		<Setter Property="MinWidth" Value="8" />
-		<Setter Property="Padding" Value="{ThemeResource SizerBasePadding}" />
+		<Setter Property="Padding" Value="0" />
 		<Setter Property="Foreground" Value="{ThemeResource SizerBaseForeground}" />
 		<Setter Property="Background" Value="{ThemeResource SizerBaseBackground}" />
 		<Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -69,9 +68,7 @@
 							Width="{ThemeResource SizerBaseThumbWidth}"
 							Height="{ThemeResource SizerBaseThumbHeight}"
 							Margin="{TemplateBinding Padding}"
-							Fill="{TemplateBinding Foreground}"
-							RadiusX="{ThemeResource SizerBaseThumbRadius}"
-							RadiusY="{ThemeResource SizerBaseThumbRadius}" />
+							Fill="{ThemeResource SizerBaseForeground}" />
 
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="CommonStates">

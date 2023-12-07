@@ -44,6 +44,8 @@ namespace Sample_WinUI3_DataTable
             m_window.Activate();
 
             m_window.NavigateToMainPage();
+
+            m_window.ExtendsContentIntoTitleBar = true;
         }
     }
 }

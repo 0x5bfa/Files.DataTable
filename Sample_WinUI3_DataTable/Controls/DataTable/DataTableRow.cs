@@ -93,7 +93,6 @@ public partial class DataTableRow : Panel
     {
         int column = 0;
         double x = 0;
-        double spacing = _parentTable.ColumnSpacing;
         double width = 0;
 
         int i = 0;
@@ -101,15 +100,20 @@ public partial class DataTableRow : Panel
         {
             if (column < _parentTable.Children.Count)
             {
-                width = (_parentTable.Children[column++] as DataTableColumn)?.ActualWidth ?? 0;
+                width = (_parentTable.Children[column] as DataTableColumn)?.ActualWidth ?? 0;
             }
+
+            if (_parentTable.Children[column] is DataTableColumn dataColumn &&
+                !dataColumn.CanResize)
+                 width += 8;
 
             child.Arrange(new Rect(x, 0, width, finalSize.Height));
 
-            x += width + spacing;
+            x += width;
             i++;
+            column++;
         }
 
-        return new Size(x - spacing, finalSize.Height);
+        return new Size(x, finalSize.Height);
     }
 }

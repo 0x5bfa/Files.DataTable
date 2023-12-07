@@ -29,7 +29,7 @@
 
 			<ListView.Header>
 				<local:DataTable Height="40" Margin="12,0,12,0">
-					<local:DataTableColumn Width="20" CanResize="False" />
+					<local:DataTableColumn Width="40" CanResize="False" />
 					<local:DataTableColumn Content="Name" />
 					<local:DataTableColumn Content="File tag" />
 					<local:DataTableColumn Content="Date modified" />
@@ -37,24 +37,15 @@
 			</ListView.Header>
 
 			<ListView.ItemTemplate>
-				<DataTemplate x:DataType="local:InventoryItem">
-					<local:DataTableRow>
-						<TextBlock
-							HorizontalAlignment="Left"
-							VerticalAlignment="Center"
-							Text="[x]" />
-						<TextBlock
-							HorizontalAlignment="Left"
-							VerticalAlignment="Center"
-							Text="{x:Bind Name}" />
-						<TextBlock
-							HorizontalAlignment="Left"
-							VerticalAlignment="Center"
-							Text="{x:Bind Description}" />
-						<TextBlock
-							HorizontalAlignment="Left"
-							VerticalAlignment="Center"
-							Text="{x:Bind Quantity}" />
+				<DataTemplate x:DataType="local:StorageItem">
+					<local:DataTableRow HorizontalAlignment="Left">
+						<Image
+							Width="20"
+							Height="20"
+							Source="{x:Bind Icon}" />
+						<TextBlock Text="{x:Bind Name}" TextTrimming="CharacterEllipsis" />
+						<TextBlock Text="{x:Bind Tags}" TextTrimming="CharacterEllipsis" />
+						<TextBlock Text="{x:Bind DateModified}" TextTrimming="CharacterEllipsis" />
 					</local:DataTableRow>
 				</DataTemplate>
 			</ListView.ItemTemplate>
@@ -62,6 +53,7 @@
 			<ListView.ItemContainerStyle>
 				<Style BasedOn="{StaticResource DefaultListViewItemStyle}" TargetType="ListViewItem">
 					<Setter Property="HorizontalContentAlignment" Value="Left" />
+					<Setter Property="VerticalContentAlignment" Value="Center" />
 				</Style>
 			</ListView.ItemContainerStyle>
 
