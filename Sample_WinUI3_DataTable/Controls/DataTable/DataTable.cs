@@ -67,8 +67,8 @@ public partial class DataTable : Panel
 
     protected override Size ArrangeOverride(Size finalSize)
     {
-        double fixedWidth = 0;
-        double autoSized = 0;
+        double width = 0;
+        double x = 0;
 
         var elements =
             Children
@@ -76,21 +76,6 @@ public partial class DataTable : Panel
                     x is DataTableColumn dataColumn &&
                     dataColumn.Visibility == Visibility.Visible)
                 .Cast<DataTableColumn>();
-
-        foreach (DataTableColumn column in elements)
-        {
-            if (column.CurrentWidth.IsAbsolute)
-            {
-                fixedWidth += column.CurrentWidth.Value;
-            }
-            else
-            {
-                autoSized += Math.Max(column.DesiredSize.Width, column.MaxChildDesiredWidth);
-            }
-        }
-
-        double width = 0;
-        double x = 0;
 
         foreach (DataTableColumn column in elements)
         {

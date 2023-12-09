@@ -41,7 +41,7 @@
 
 			<ListView.ItemTemplate>
 				<DataTemplate x:DataType="local:StorageItem">
-					<local:DataTableRow HorizontalAlignment="Left" Background="Blue">
+					<local:DataTableRow HorizontalAlignment="Left">
 						<Image
 							Width="20"
 							Height="20"
