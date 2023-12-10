@@ -15,7 +15,7 @@ public partial class DataTable : Panel
     internal bool IsAnyColumnAuto
         => Children.Any(e => e is DataTableColumn { CurrentWidth.GridUnitType: GridUnitType.Auto });
 
-    internal void NotifyColumnChangeToRows()
+    internal void ArrangeColumnsAndRows()
     {
         InvalidateArrange();
 
