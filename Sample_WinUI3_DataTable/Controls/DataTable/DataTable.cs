@@ -10,11 +10,32 @@ namespace Sample_WinUI3_DataTable;
 
 public partial class DataTable : Panel
 {
+    public bool SizingColumnToFit { get; set; }
+
     internal bool IsAnyColumnAuto
         => Children.Any(e => e is DataTableColumn { CurrentWidth.GridUnitType: GridUnitType.Auto });
 
-    internal void ColumnResized()
+    internal void NotifyColumnChangeToRows()
     {
+        InvalidateArrange();
+
+        if (this.FindAscendant<ListView>() is ListView listView)
+        {
+            foreach (var item in listView.Items)
+            {
+                var container = listView.ContainerFromItem(item);
+
+                if (container is ListViewItem listViewItem &&
+                    listViewItem.ContentTemplateRoot is DataTableRow row)
+                    row.InvalidateArrange();
+            }
+        }
+    }
+
+    internal void NotifyColumnSizedToFit()
+    {
+        SizingColumnToFit = true;
+
         InvalidateArrange();
 
         if (this.FindAscendant<ListView>() is ListView listView)

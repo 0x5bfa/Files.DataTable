@@ -24,8 +24,8 @@ public partial class DataTableColumn : ButtonBase
         if (PART_ColumnSizer != null)
         {
             PART_ColumnSizer.TargetControl = null;
-            PART_ColumnSizer.ManipulationDelta -= this.PART_ColumnSizer_ManipulationDelta;
-            PART_ColumnSizer.ManipulationCompleted -= this.PART_ColumnSizer_ManipulationCompleted;
+            PART_ColumnSizer.ManipulationDelta -= PART_ColumnSizer_ManipulationDelta;
+            PART_ColumnSizer.ManipulationCompleted -= PART_ColumnSizer_ManipulationCompleted;
         }
 
         PART_ColumnSizer = GetTemplateChild(nameof(PART_ColumnSizer)) as ContentSizer;
@@ -33,8 +33,9 @@ public partial class DataTableColumn : ButtonBase
         if (PART_ColumnSizer != null)
         {
             PART_ColumnSizer.TargetControl = this;
-            PART_ColumnSizer.ManipulationDelta += this.PART_ColumnSizer_ManipulationDelta;
-            PART_ColumnSizer.ManipulationCompleted += this.PART_ColumnSizer_ManipulationCompleted;
+            PART_ColumnSizer.ManipulationDelta += PART_ColumnSizer_ManipulationDelta;
+            PART_ColumnSizer.ManipulationCompleted += PART_ColumnSizer_ManipulationCompleted;
+            PART_ColumnSizer.DoubleTapped += PART_ColumnSizer_DoubleTapped;
         }
 
         // Get DataTable parent weak reference for when we manipulate columns.
@@ -49,23 +50,42 @@ public partial class DataTableColumn : ButtonBase
 
     private void PART_ColumnSizer_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
     {
-        ColumnResizedByUserSizer();
+        ResizeColumnByUserSizer();
     }
 
     private void PART_ColumnSizer_ManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
     {
-        ColumnResizedByUserSizer();
+        ResizeColumnByUserSizer();
     }
 
-    private void ColumnResizedByUserSizer()
+    private void PART_ColumnSizer_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
+    {
+        SizeColumnToFit();
+    }
+
+    private void ResizeColumnByUserSizer()
     {
         // Update our internal representation to be our size now as a fixed value.
         CurrentWidth = new(this.ActualWidth);
 
         // Notify the rest of the table to update
-        if (_parent?.TryGetTarget(out DataTable? parent) == true && parent != null)
+        if (_parent?.TryGetTarget(out DataTable? parent) == true &&
+            parent != null)
         {
-            parent.ColumnResized();
+            parent.NotifyColumnSizedToFit();
+        }
+    }
+
+    private void SizeColumnToFit()
+    {
+        // Update our internal representation to be our size now as a fixed value.
+        CurrentWidth = new(this.ActualWidth);
+
+        // Notify the rest of the table to update
+        if (_parent?.TryGetTarget(out DataTable? parent) == true &&
+            parent != null)
+        {
+            parent.NotifyColumnSizedToFit();
         }
     }
 }
