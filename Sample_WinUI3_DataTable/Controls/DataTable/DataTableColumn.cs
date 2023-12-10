@@ -72,7 +72,7 @@ public partial class DataTableColumn : ButtonBase
         if (_parent?.TryGetTarget(out DataTable? parent) == true &&
             parent != null)
         {
-            parent.NotifyColumnSizedToFit();
+            parent.NotifyColumnChangeToRows();
         }
     }
 

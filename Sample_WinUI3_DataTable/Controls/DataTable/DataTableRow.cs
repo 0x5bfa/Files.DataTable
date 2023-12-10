@@ -51,7 +51,7 @@ public partial class DataTableRow : Panel
 
                         // If our measure has changed, then we have to invalidate the arrange of the DataTable
                         if (col.MaxChildDesiredWidth != prev)
-                            _parentTable.NotifyColumnSizedToFit();
+                            _parentTable.NotifyColumnChangeToRows();
                     }
                     else if (_parentTable.Children[i] is DataTableColumn { CurrentWidth.GridUnitType: GridUnitType.Pixel } pixel)
                     {
