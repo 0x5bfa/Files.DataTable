@@ -32,7 +32,7 @@ public partial class DataTable : Panel
         }
     }
 
-    internal void NotifyColumnSizedToFit()
+    internal void MeasureAndArrangeColumnsAndRowsToFit()
     {
         SizingColumnToFit = true;
 
