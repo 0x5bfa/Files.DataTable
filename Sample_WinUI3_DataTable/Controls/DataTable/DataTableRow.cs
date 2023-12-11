@@ -76,34 +76,37 @@ public partial class DataTableRow : Panel
         if (_parentTable is null)
             return finalSize;
 
-        int column = 0;
         double x = 0;
         double width = 0;
-
-        int i = 0;
+        int index = 0;
 
         foreach (FrameworkElement child in Children.Where(e => e.Visibility == Visibility.Visible).Cast<FrameworkElement>())
         {
-            width = (_parentTable.Children[column] as DataTableColumn)?.ActualWidth ?? 0;
-
-            if (_parentTable.Children[column] is DataTableColumn dataColumn &&
-                !dataColumn.CanResize)
+            if (_parentTable.Children[index] is DataTableColumn dataColumn)
             {
-                // Add resizer width virtually
-                width += 8;
+                width = dataColumn.ActualWidth;
+
+                if (!dataColumn.CanResize)
+                {
+                    // Add resizer width virtually
+                    width += 8;
+                }
+                else
+                {
+                    // Avoid using the area of the next column
+                    child.MaxWidth = width;
+                    child.Margin = new(0, 0, 12, 0);
+                }
+
                 child.Arrange(new(x, 0, width, finalSize.Height));
             }
             else
             {
-                // Avoid using the area of the next column
-                child.Margin = new(0, 0, 12, 0);
                 child.Arrange(new(x, 0, width, finalSize.Height));
-                child.MaxWidth = width;
             }
 
             x += width;
-            i++;
-            column++;
+            index++;
         }
 
         return new Size(x, finalSize.Height);

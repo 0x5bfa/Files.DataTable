@@ -23,7 +23,7 @@ namespace Sample_WinUI3_DataTable
     /// </summary>
     public partial class App : Application
     {
-        private MainWindow m_window;
+        private MainWindow? m_window;
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -41,11 +41,8 @@ namespace Sample_WinUI3_DataTable
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
             m_window = new MainWindow();
-            m_window.Activate();
-
-            m_window.NavigateToMainPage();
-
-            m_window.ExtendsContentIntoTitleBar = true;
+            m_window!.Activate();
+            m_window!.NavigateToMainPage();
         }
     }
 }

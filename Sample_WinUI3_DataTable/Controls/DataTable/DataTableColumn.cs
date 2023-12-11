@@ -51,16 +51,19 @@ public partial class DataTableColumn : ButtonBase
     private void PART_ColumnSizer_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
     {
         ResizeColumnByUserSizer();
+        e.Handled = true;
     }
 
     private void PART_ColumnSizer_ManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
     {
         ResizeColumnByUserSizer();
+        e.Handled = true;
     }
 
     private void PART_ColumnSizer_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
     {
         SizeColumnToFit();
+        e.Handled = true;
     }
 
     private void ResizeColumnByUserSizer()
@@ -78,6 +81,10 @@ public partial class DataTableColumn : ButtonBase
 
     private void SizeColumnToFit()
     {
+        // Get the max width
+        this.Width = 100;
+        UpdateLayout();
+
         // Update our internal representation to be our size now as a fixed value.
         CurrentWidth = new(this.ActualWidth);
 
