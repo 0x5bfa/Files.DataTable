@@ -15,7 +15,7 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using WinUIEx;
 
-namespace Sample_WinUI3_DataTable
+namespace Files.DataTable
 {
 	/// <summary>
 	/// An empty window that can be used on its own or navigated to within a Frame.

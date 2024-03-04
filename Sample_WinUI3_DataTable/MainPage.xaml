@@ -1,66 +1,49 @@
 ﻿<Page
-	x:Class="Sample_WinUI3_DataTable.MainPage"
+	x:Class="Files.DataTable.MainPage"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-	xmlns:local="using:Sample_WinUI3_DataTable"
+	xmlns:local="using:Files.DataTable"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d">
 
 	<Page.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
-				<ResourceDictionary Source="ms-appx:///Controls/DataTable/DataTableColumn.xaml" />
-				<ResourceDictionary Source="ms-appx:///Controls/Sizer/SizerBase.xaml" />
+				<ResourceDictionary Source="ms-appx:///Controls/DataTable/DataColumn.xaml" />
 			</ResourceDictionary.MergedDictionaries>
 		</ResourceDictionary>
 	</Page.Resources>
 
-	<Grid>
-
-		<ListView
-			x:Name="MainListView"
-			Margin="32"
-			Background="{ThemeResource LayerFillColorDefaultBrush}"
-			BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-			BorderThickness="1"
-			CornerRadius="4"
-			ItemsSource="{x:Bind InventoryItems}">
-
-			<ListView.Header>
-				<local:DataTable Height="40" Margin="12,0,12,0">
-					<local:DataTableColumn
-						MinWidth="0"
-						CanResize="False"
-						DesiredWidth="40" />
-					<local:DataTableColumn Content="Name" />
-					<local:DataTableColumn Content="File tag" />
-					<local:DataTableColumn Content="Date modified" />
-				</local:DataTable>
-			</ListView.Header>
-
-			<ListView.ItemTemplate>
-				<DataTemplate x:DataType="local:StorageItem">
-					<local:DataTableRow HorizontalAlignment="Left">
-						<Image
-							Width="20"
-							Height="20"
-							Source="{x:Bind Icon}" />
-						<TextBlock Text="{x:Bind Name}" TextTrimming="CharacterEllipsis" />
-						<TextBlock Text="{x:Bind Tags}" TextTrimming="CharacterEllipsis" />
-						<TextBlock Text="{x:Bind DateModified}" TextTrimming="CharacterEllipsis" />
-					</local:DataTableRow>
-				</DataTemplate>
-			</ListView.ItemTemplate>
-
-			<ListView.ItemContainerStyle>
-				<Style BasedOn="{StaticResource DefaultListViewItemStyle}" TargetType="ListViewItem">
-					<Setter Property="HorizontalContentAlignment" Value="Left" />
-					<Setter Property="VerticalContentAlignment" Value="Center" />
-				</Style>
-			</ListView.ItemContainerStyle>
-
-		</ListView>
-
-	</Grid>
+	<ListView ItemsSource="{x:Bind InventoryItems}">
+		<ListView.Header>
+			<local:DataTable Margin="12,0,0,0">
+				<local:DataColumn Content="Id" DesiredWidth="80" />
+				<local:DataColumn
+					MinWidth="120"
+					CanResize="True"
+					Content="Name" />
+				<!--  Each column can be text or quickly customized by containing any content or restyled of course  -->
+				<local:DataColumn DesiredWidth="*">
+					<TextBlock FontWeight="SemiBold" Text="Description" />
+				</local:DataColumn>
+				<local:DataColumn Content="Quantity" DesiredWidth="100" />
+			</local:DataTable>
+		</ListView.Header>
+		<ListView.ItemTemplate>
+			<DataTemplate x:DataType="local:InventoryItem">
+				<local:DataRow Margin="4,0" HorizontalAlignment="Left">
+					<TextBlock VerticalAlignment="Center" Text="{x:Bind Id}" />
+					<TextBlock VerticalAlignment="Center" Text="{x:Bind Name}" />
+					<TextBlock VerticalAlignment="Center" Text="{x:Bind Description}" />
+					<TextBlock VerticalAlignment="Center" Text="{x:Bind Quantity}" />
+				</local:DataRow>
+			</DataTemplate>
+		</ListView.ItemTemplate>
+		<ListView.ItemContainerStyle>
+			<Style BasedOn="{StaticResource DefaultListViewItemStyle}" TargetType="ListViewItem">
+				<Setter Property="HorizontalContentAlignment" Value="Stretch" />
+			</Style>
+		</ListView.ItemContainerStyle>
+	</ListView>
 </Page>

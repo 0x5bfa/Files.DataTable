@@ -4,9 +4,9 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls.Primitives;
 
-namespace Sample_WinUI3_DataTable;
+namespace Files.DataTable;
 
-public partial class DataTableColumn : ButtonBase
+public partial class DataColumn : ButtonBase
 {
     internal double MaxChildDesiredWidth { get; set; }
 
@@ -22,7 +22,7 @@ public partial class DataTableColumn : ButtonBase
         DependencyProperty.Register(
             nameof(CanResize),
             typeof(bool),
-            typeof(DataTableColumn),
+            typeof(DataColumn),
             new PropertyMetadata(true));
 
     public GridLength DesiredWidth
@@ -35,12 +35,12 @@ public partial class DataTableColumn : ButtonBase
         DependencyProperty.Register(
             nameof(DesiredWidth),
             typeof(GridLength),
-            typeof(DataTableColumn),
+            typeof(DataColumn),
             new PropertyMetadata(GridLength.Auto, DesiredWidth_PropertyChanged));
 
     private static void DesiredWidth_PropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        if (d is DataTableColumn col)
+        if (d is DataColumn col)
             col.CurrentWidth = col.DesiredWidth;
     }
 }

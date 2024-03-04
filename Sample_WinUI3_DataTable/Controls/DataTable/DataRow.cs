@@ -1,18 +1,18 @@
 // Copyright (c) 2023 Files Community
 // Licensed under the MIT License. See the LICENSE.
 
-using CommunityToolkit.WinUI.UI;
+using CommunityToolkit.WinUI;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Windows.Foundation;
 
-namespace Sample_WinUI3_DataTable;
+namespace Files.DataTable;
 
-public partial class DataTableRow : Panel
+public partial class DataRow : Panel
 {
     private DataTable? _parentTable;
 
-    public DataTableRow()
+    public DataRow()
     {
         Unloaded += (sender, e) => { _parentTable = null; };
     }
@@ -41,7 +41,7 @@ public partial class DataTableRow : Panel
                 // Measure all children since we need to determine the row's height at minimum
                 for (int i = 0; i < Children.Count; i++)
                 {
-                    if (_parentTable.Children[i] is DataTableColumn { CurrentWidth.GridUnitType: GridUnitType.Auto } col)
+                    if (_parentTable.Children[i] is DataColumn { CurrentWidth.GridUnitType: GridUnitType.Auto } col)
                     {
                         Children[i].Measure(availableSize);
 
@@ -53,7 +53,7 @@ public partial class DataTableRow : Panel
                         if (col.MaxChildDesiredWidth != prev)
                             _parentTable.ArrangeColumnsAndRows();
                     }
-                    else if (_parentTable.Children[i] is DataTableColumn { CurrentWidth.GridUnitType: GridUnitType.Pixel } pixel)
+                    else if (_parentTable.Children[i] is DataColumn { CurrentWidth.GridUnitType: GridUnitType.Pixel } pixel)
                     {
                         Children[i].Measure(new(pixel.DesiredWidth.Value, availableSize.Height));
                     }
@@ -82,7 +82,7 @@ public partial class DataTableRow : Panel
 
         foreach (FrameworkElement child in Children.Where(e => e.Visibility == Visibility.Visible).Cast<FrameworkElement>())
         {
-            if (_parentTable.Children[index] is DataTableColumn dataColumn)
+            if (_parentTable.Children[index] is DataColumn dataColumn)
             {
                 width = dataColumn.ActualWidth;
 

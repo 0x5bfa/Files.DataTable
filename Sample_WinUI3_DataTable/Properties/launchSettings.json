@@ -1,9 +1,9 @@
 {
   "profiles": {
-    "Sample_WinUI3_DataTable (Package)": {
+    "Files.DataTable (Package)": {
       "commandName": "MsixPackage"
     },
-    "Sample_WinUI3_DataTable (Unpackaged)": {
+    "Files.DataTable (Unpackaged)": {
       "commandName": "Project"
     }
   }

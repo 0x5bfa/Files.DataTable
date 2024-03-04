@@ -1,22 +1,23 @@
 // Copyright (c) 2023 Files Community
 // Licensed under the MIT License. See the LICENSE.
 
-using CommunityToolkit.WinUI.UI;
+using CommunityToolkit.WinUI;
+using CommunityToolkit.WinUI.Controls;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Input;
 
-namespace Sample_WinUI3_DataTable;
+namespace Files.DataTable;
 
 [TemplatePart(Name = nameof(PART_ColumnSizer), Type = typeof(ContentSizer))]
-public partial class DataTableColumn : ButtonBase
+public partial class DataColumn : ButtonBase
 {
     private ContentSizer? PART_ColumnSizer;
     private WeakReference<DataTable>? _parent;
 
-    public DataTableColumn()
+    public DataColumn()
     {
-        DefaultStyleKey = typeof(DataTableColumn);
+        DefaultStyleKey = typeof(DataColumn);
     }
 
     protected override void OnApplyTemplate()

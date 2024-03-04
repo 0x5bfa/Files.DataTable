@@ -16,44 +16,44 @@ using Microsoft.UI.Xaml.Navigation;
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
-namespace Sample_WinUI3_DataTable
+namespace Files.DataTable
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class MainPage : Page
     {
-
-        public ObservableCollection<StorageItem> InventoryItems { get; set; } = new()
+        public ObservableCollection<InventoryItem> InventoryItems { get; set; } = new()
         {
             new()
             {
-                Icon = "ms-appx:///Assets/FolderIcon.png",
-                Name = "getting in blow nothing I.png",
-                Tags = "Home, Workspace",
-                DateModified = "5/12/2023 3:00 PM",
+                Id = 1002,
+                Name = "Hydra",
+                Description = "Multiple Launch Rocket System-2 Hydra",
+                Quantity = 1,
             },
             new()
             {
-                Icon = "ms-appx:///Assets/FolderIcon.png",
-                Name = "secret old it you come plans Let's.jpg",
-                Tags = "Home, Workspace",
-                DateModified = "5/12/2023 3:00 PM",
+                Id = 3456,
+                Name = "MA40 AR",
+                Description = "Regular assault rifle - updated version of MA5B or MA37 AR",
+                Quantity = 4,
             },
             new()
             {
-                Icon = "ms-appx:///Assets/FolderIcon.png",
-                Name = "to your it your.bat",
-                Tags = "Home, Workspace",
-                DateModified = "5/12/2023 3:00 PM",
+                Id = 5698,
+                Name = "Needler",
+                Description = "Alien weapon well-known for its iconic design with pink crystals",
+                Quantity = 2,
             },
             new()
             {
-                Icon = "ms-appx:///Assets/FolderIcon.png",
-                Name = "Besides, sort and in.pdf",
-                Tags = "Study",
-                DateModified = "5/12/2023 3:00 PM",
+                Id = 7043,
+                Name = "Ravager",
+                Description = "An incendiary plasma launcher",
+                Quantity = 1,
             },
+            // TODO: Add more items, maybe abstract these to a helper for other samples?
         };
 
         public MainPage()

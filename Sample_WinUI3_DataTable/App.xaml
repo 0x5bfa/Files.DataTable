@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Application
-	x:Class="Sample_WinUI3_DataTable.App"
+	x:Class="Files.DataTable.App"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	xmlns:local="using:Sample_WinUI3_DataTable">
+	xmlns:local="using:Files.DataTable">
 	<Application.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>

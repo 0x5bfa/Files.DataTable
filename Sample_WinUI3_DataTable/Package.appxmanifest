@@ -15,7 +15,7 @@
   <mp:PhoneIdentity PhoneProductId="ed173843-62e7-4219-8d68-4c0a1e7bc88d" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>Sample_WinUI3_DataTable</DisplayName>
+    <DisplayName>Files.DataTable</DisplayName>
     <PublisherDisplayName>onein</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
@@ -34,8 +34,8 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="$targetentrypoint$">
       <uap:VisualElements
-        DisplayName="Sample_WinUI3_DataTable"
-        Description="Sample_WinUI3_DataTable"
+        DisplayName="Files.DataTable"
+        Description="Files.DataTable"
         BackgroundColor="transparent"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png">

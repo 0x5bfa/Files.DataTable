@@ -1,19 +1,19 @@
 // Copyright (c) 2023 Files Community
 // Licensed under the MIT License. See the LICENSE.
 
-using CommunityToolkit.WinUI.UI;
+using CommunityToolkit.WinUI;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Windows.Foundation;
 
-namespace Sample_WinUI3_DataTable;
+namespace Files.DataTable;
 
 public partial class DataTable : Panel
 {
     public bool SizingColumnToFit { get; set; }
 
     internal bool IsAnyColumnAuto
-        => Children.Any(e => e is DataTableColumn { CurrentWidth.GridUnitType: GridUnitType.Auto });
+        => Children.Any(e => e is DataColumn { CurrentWidth.GridUnitType: GridUnitType.Auto });
 
     internal void ArrangeColumnsAndRows()
     {
@@ -26,7 +26,7 @@ public partial class DataTable : Panel
                 var container = listView.ContainerFromItem(item);
 
                 if (container is ListViewItem listViewItem &&
-                    listViewItem.ContentTemplateRoot is DataTableRow row)
+                    listViewItem.ContentTemplateRoot is DataRow row)
                     row.InvalidateArrange();
             }
         }
@@ -45,7 +45,7 @@ public partial class DataTable : Panel
                 var container = listView.ContainerFromItem(item);
 
                 if (container is ListViewItem listViewItem &&
-                    listViewItem.ContentTemplateRoot is DataTableRow row)
+                    listViewItem.ContentTemplateRoot is DataRow row)
                     row.InvalidateArrange();
             }
         }
@@ -60,14 +60,14 @@ public partial class DataTable : Panel
         var elements =
             Children
                 .Where(x =>
-                    x is DataTableColumn dataColumn &&
+                    x is DataColumn dataColumn &&
                     dataColumn.Visibility == Visibility.Visible)
-                .Cast<DataTableColumn>();
+                .Cast<DataColumn>();
 
-        foreach (DataTableColumn column in elements)
+        foreach (DataColumn column in elements)
             fixedWidth += column.DesiredWidth.Value;
 
-        foreach (DataTableColumn column in elements)
+        foreach (DataColumn column in elements)
         {
             if (column.CurrentWidth.IsAbsolute)
             {
@@ -94,11 +94,11 @@ public partial class DataTable : Panel
         var elements =
             Children
                 .Where(x =>
-                    x is DataTableColumn dataColumn &&
+                    x is DataColumn dataColumn &&
                     dataColumn.Visibility == Visibility.Visible)
-                .Cast<DataTableColumn>();
+                .Cast<DataColumn>();
 
-        foreach (DataTableColumn column in elements)
+        foreach (DataColumn column in elements)
         {
             if (column.CurrentWidth.IsAbsolute)
             {
