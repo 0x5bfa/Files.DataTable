@@ -18,47 +18,50 @@ using Microsoft.UI.Xaml.Navigation;
 
 namespace Files.DataTable
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
-    public sealed partial class MainPage : Page
-    {
-        public ObservableCollection<InventoryItem> InventoryItems { get; set; } = new()
-        {
-            new()
-            {
-                Id = 1002,
-                Name = "Hydra",
-                Description = "Multiple Launch Rocket System-2 Hydra",
-                Quantity = 1,
-            },
-            new()
-            {
-                Id = 3456,
-                Name = "MA40 AR",
-                Description = "Regular assault rifle - updated version of MA5B or MA37 AR",
-                Quantity = 4,
-            },
-            new()
-            {
-                Id = 5698,
-                Name = "Needler",
-                Description = "Alien weapon well-known for its iconic design with pink crystals",
-                Quantity = 2,
-            },
-            new()
-            {
-                Id = 7043,
-                Name = "Ravager",
-                Description = "An incendiary plasma launcher",
-                Quantity = 1,
-            },
-            // TODO: Add more items, maybe abstract these to a helper for other samples?
-        };
+	/// <summary>
+	/// An empty page that can be used on its own or navigated to within a Frame.
+	/// </summary>
+	public sealed partial class MainPage : Page
+	{
+		public ObservableCollection<StorageItem> Items { get; set; } = new()
+		{
+			new()
+			{
+				ThumbnailPath = "ms-appx:///Assets/FolderIcon.png",
+				Name = "File name here",
+				DateModified = "3/14/2024 12:00 PM",
+				Type = "TXT file",
+				Size = "23 MB",
+			},
+			new()
+			{
+				ThumbnailPath = "ms-appx:///Assets/FolderIcon.png",
+				Name = "File name here asdf ds fsdf ",
+				DateModified = "3/14/2024 12:00 PM",
+				Type = "TXT file",
+				Size = "1.4 TB",
+			},
+			new()
+			{
+				ThumbnailPath = "ms-appx:///Assets/FolderIcon.png",
+				Name = "File name here df ewserfsdfa ds a sd adsf",
+				DateModified = "3/14/2024 12:00 PM",
+				Type = "TXT file",
+				Size = "64 kB",
+			},
+			new()
+			{
+				ThumbnailPath = "ms-appx:///Assets/FolderIcon.png",
+				Name = "File name here dsf dssdf",
+				DateModified = "3/14/2024 12:00 PM",
+				Type = "TXT file",
+				Size = "1 B",
+			},
+		};
 
-        public MainPage()
-        {
-            InitializeComponent();
-        }
-    }
+		public MainPage()
+		{
+			InitializeComponent();
+		}
+	}
 }

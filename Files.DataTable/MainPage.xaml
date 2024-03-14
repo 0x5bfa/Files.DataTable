@@ -15,24 +15,30 @@
 		</ResourceDictionary>
 	</Page.Resources>
 
-	<ListView ItemsSource="{x:Bind InventoryItems}">
+	<ListView ItemsSource="{x:Bind Items, Mode=OneWay}">
 
 		<ListView.Header>
 			<local:DataTable Height="40" HorizontalAlignment="Stretch">
-				<local:DataColumn Content="Id" />
+				<local:DataColumn Width="60" CanResize="False" />
 				<local:DataColumn Content="Name" />
-				<local:DataColumn Content="Description" />
-				<local:DataColumn Content="Quantity" />
+				<local:DataColumn Content="Date modified" />
+				<local:DataColumn Content="Type" />
+				<local:DataColumn Content="Size" />
 			</local:DataTable>
 		</ListView.Header>
 
 		<ListView.ItemTemplate>
-			<DataTemplate x:DataType="local:InventoryItem">
+			<DataTemplate x:DataType="local:StorageItem">
 				<local:DataRow HorizontalAlignment="Left">
-					<TextBlock VerticalAlignment="Center" Text="{x:Bind Id}" />
-					<TextBlock VerticalAlignment="Center" Text="{x:Bind Name}" />
-					<TextBlock VerticalAlignment="Center" Text="{x:Bind Description}" />
-					<TextBlock VerticalAlignment="Center" Text="{x:Bind Quantity}" />
+					<Image
+						Width="20"
+						Height="20"
+						HorizontalAlignment="Left"
+						Source="{x:Bind ThumbnailPath}" />
+					<TextBlock Text="{x:Bind Name}" />
+					<TextBlock Text="{x:Bind DateModified}" />
+					<TextBlock Text="{x:Bind Type}" />
+					<TextBlock Text="{x:Bind Size}" />
 				</local:DataRow>
 			</DataTemplate>
 		</ListView.ItemTemplate>
