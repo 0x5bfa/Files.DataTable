@@ -16,7 +16,7 @@ using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 
-namespace Sample_WinUI3_DataTable
+namespace Files.DataTable
 {
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.

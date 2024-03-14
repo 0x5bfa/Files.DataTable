@@ -1,0 +1,57 @@
+﻿<Page
+	x:Class="Files.DataTable.MainPage"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="using:Files.DataTable"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d">
+
+	<Page.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="ms-appx:///Controls/DataTable/DataColumn.xaml" />
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
+	</Page.Resources>
+
+	<ListView ItemsSource="{x:Bind Items, Mode=OneWay}">
+
+		<ListView.Header>
+			<local:DataTable Height="40" HorizontalAlignment="Stretch">
+				<local:DataColumn Width="60" CanResize="False" />
+				<local:DataColumn Content="Name" />
+				<local:DataColumn Content="Date modified" />
+				<local:DataColumn Content="Type" />
+				<local:DataColumn Content="Size" />
+			</local:DataTable>
+		</ListView.Header>
+
+		<ListView.ItemTemplate>
+			<DataTemplate x:DataType="local:StorageItem">
+				<local:DataRow HorizontalAlignment="Left">
+					<Image
+						Width="20"
+						Height="20"
+						HorizontalAlignment="Left"
+						Source="{x:Bind ThumbnailPath}" />
+					<TextBlock Text="{x:Bind Name}" />
+					<TextBlock Text="{x:Bind DateModified}" />
+					<TextBlock Text="{x:Bind Type}" />
+					<TextBlock Text="{x:Bind Size}" />
+				</local:DataRow>
+			</DataTemplate>
+		</ListView.ItemTemplate>
+
+		<ListView.ItemContainerStyle>
+			<Style BasedOn="{StaticResource DefaultListViewItemStyle}" TargetType="ListViewItem">
+				<Setter Property="HorizontalContentAlignment" Value="Stretch" />
+				<Setter Property="VerticalContentAlignment" Value="Center" />
+				<Setter Property="HorizontalAlignment" Value="Left" />
+				<Setter Property="Margin" Value="8,0" />
+			</Style>
+		</ListView.ItemContainerStyle>
+
+	</ListView>
+
+</Page>

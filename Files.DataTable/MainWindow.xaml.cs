@@ -15,13 +15,13 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using WinUIEx;
 
-namespace Sample_WinUI3_DataTable
+namespace Files.DataTable
 {
 	/// <summary>
 	/// An empty window that can be used on its own or navigated to within a Frame.
 	/// </summary>
 	public sealed partial class MainWindow : WindowEx
-    {
+	{
 		public MainWindow()
 		{
 			this.InitializeComponent();
@@ -29,11 +29,11 @@ namespace Sample_WinUI3_DataTable
 
 		public void NavigateToMainPage()
 		{
-            AppWindow.TitleBar.ExtendsContentIntoTitleBar = true;
-            AppWindow.TitleBar.ButtonBackgroundColor = Colors.Transparent;
-            AppWindow.TitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
+			AppWindow.TitleBar.ExtendsContentIntoTitleBar = true;
+			AppWindow.TitleBar.ButtonBackgroundColor = Colors.Transparent;
+			AppWindow.TitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
 
-            MainFrame.Navigate(typeof(MainPage));
+			MainFrame.Navigate(typeof(MainPage));
 		}
 	}
 }
