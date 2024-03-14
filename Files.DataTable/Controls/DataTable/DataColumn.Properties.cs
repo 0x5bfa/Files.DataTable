@@ -8,39 +8,39 @@ namespace Files.DataTable;
 
 public partial class DataColumn : ButtonBase
 {
-    internal double MaxChildDesiredWidth { get; set; }
+	internal double MaxChildDesiredWidth { get; set; }
 
-    internal GridLength CurrentWidth { get; private set; }
+	internal GridLength CurrentWidth { get; private set; }
 
-    public bool CanResize
-    {
-        get => (bool)GetValue(CanResizeProperty);
-        set => SetValue(CanResizeProperty, value);
-    }
+	public bool CanResize
+	{
+		get => (bool)GetValue(CanResizeProperty);
+		set => SetValue(CanResizeProperty, value);
+	}
 
-    public static readonly DependencyProperty CanResizeProperty =
-        DependencyProperty.Register(
-            nameof(CanResize),
-            typeof(bool),
-            typeof(DataColumn),
-            new PropertyMetadata(true));
+	public static readonly DependencyProperty CanResizeProperty =
+		DependencyProperty.Register(
+			nameof(CanResize),
+			typeof(bool),
+			typeof(DataColumn),
+			new PropertyMetadata(true));
 
-    public GridLength DesiredWidth
-    {
-        get => (GridLength)GetValue(DesiredWidthProperty);
-        set => SetValue(DesiredWidthProperty, value);
-    }
+	public GridLength DesiredWidth
+	{
+		get => (GridLength)GetValue(DesiredWidthProperty);
+		set => SetValue(DesiredWidthProperty, value);
+	}
 
-    public static readonly DependencyProperty DesiredWidthProperty =
-        DependencyProperty.Register(
-            nameof(DesiredWidth),
-            typeof(GridLength),
-            typeof(DataColumn),
-            new PropertyMetadata(GridLength.Auto, DesiredWidth_PropertyChanged));
+	public static readonly DependencyProperty DesiredWidthProperty =
+		DependencyProperty.Register(
+			nameof(DesiredWidth),
+			typeof(GridLength),
+			typeof(DataColumn),
+			new PropertyMetadata(GridLength.Auto, DesiredWidth_PropertyChanged));
 
-    private static void DesiredWidth_PropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-    {
-        if (d is DataColumn col)
-            col.CurrentWidth = col.DesiredWidth;
-    }
+	private static void DesiredWidth_PropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+	{
+		if (d is DataColumn col)
+			col.CurrentWidth = col.DesiredWidth;
+	}
 }

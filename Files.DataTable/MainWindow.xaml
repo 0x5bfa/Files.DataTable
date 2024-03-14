@@ -15,6 +15,7 @@
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="36" />
+			<RowDefinition Height="48" />
 			<RowDefinition Height="*" />
 		</Grid.RowDefinitions>
 
@@ -22,11 +23,49 @@
 			<TextBlock
 				VerticalAlignment="Center"
 				Style="{StaticResource CaptionTextBlockStyle}"
-				Text="Sample App for the DataTable" />
+				Text="Files.DataTable" />
 		</StackPanel>
 
-		<Frame x:Name="MainFrame" Grid.Row="1" />
+		<TextBlock
+			Grid.RowSpan="2"
+			HorizontalAlignment="Center"
+			VerticalAlignment="Center"
+			Style="{StaticResource CaptionTextBlockStyle}"
+			Text="Addressbar area" />
 
+		<Grid Grid.Row="2">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="200" />
+				<ColumnDefinition Width="*" />
+			</Grid.ColumnDefinitions>
+
+			<TextBlock
+				HorizontalAlignment="Center"
+				VerticalAlignment="Center"
+				Style="{StaticResource CaptionTextBlockStyle}"
+				Text="Sidebar area" />
+
+			<Grid
+				Grid.Column="1"
+				Background="{ThemeResource LayerFillColorDefaultBrush}"
+				BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+				BorderThickness="1,1,0,0"
+				CornerRadius="8,0,0,0">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="48" />
+					<RowDefinition Height="1" />
+					<RowDefinition Height="*" />
+				</Grid.RowDefinitions>
+
+				<Border
+					Grid.Row="1"
+					Height="1"
+					Background="{ThemeResource DividerStrokeColorDefaultBrush}" />
+
+				<Frame x:Name="MainFrame" Grid.Row="2" />
+			</Grid>
+
+		</Grid>
 	</Grid>
 
 </winuiex:WindowEx>

@@ -16,23 +16,19 @@
 	</Page.Resources>
 
 	<ListView ItemsSource="{x:Bind InventoryItems}">
+
 		<ListView.Header>
-			<local:DataTable Margin="12,0,0,0">
-				<local:DataColumn Content="Id" DesiredWidth="80" />
-				<local:DataColumn
-					MinWidth="120"
-					CanResize="True"
-					Content="Name" />
-				<!--  Each column can be text or quickly customized by containing any content or restyled of course  -->
-				<local:DataColumn DesiredWidth="*">
-					<TextBlock FontWeight="SemiBold" Text="Description" />
-				</local:DataColumn>
-				<local:DataColumn Content="Quantity" DesiredWidth="100" />
+			<local:DataTable Height="40" HorizontalAlignment="Stretch">
+				<local:DataColumn Content="Id" />
+				<local:DataColumn Content="Name" />
+				<local:DataColumn Content="Description" />
+				<local:DataColumn Content="Quantity" />
 			</local:DataTable>
 		</ListView.Header>
+
 		<ListView.ItemTemplate>
 			<DataTemplate x:DataType="local:InventoryItem">
-				<local:DataRow Margin="4,0" HorizontalAlignment="Left">
+				<local:DataRow HorizontalAlignment="Left">
 					<TextBlock VerticalAlignment="Center" Text="{x:Bind Id}" />
 					<TextBlock VerticalAlignment="Center" Text="{x:Bind Name}" />
 					<TextBlock VerticalAlignment="Center" Text="{x:Bind Description}" />
@@ -40,10 +36,16 @@
 				</local:DataRow>
 			</DataTemplate>
 		</ListView.ItemTemplate>
+
 		<ListView.ItemContainerStyle>
 			<Style BasedOn="{StaticResource DefaultListViewItemStyle}" TargetType="ListViewItem">
 				<Setter Property="HorizontalContentAlignment" Value="Stretch" />
+				<Setter Property="VerticalContentAlignment" Value="Center" />
+				<Setter Property="HorizontalAlignment" Value="Left" />
+				<Setter Property="Margin" Value="8,0" />
 			</Style>
 		</ListView.ItemContainerStyle>
+
 	</ListView>
+
 </Page>

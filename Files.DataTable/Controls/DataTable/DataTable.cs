@@ -10,110 +10,110 @@ namespace Files.DataTable;
 
 public partial class DataTable : Panel
 {
-    public bool SizingColumnToFit { get; set; }
+	public bool SizingColumnToFit { get; set; }
 
-    internal bool IsAnyColumnAuto
-        => Children.Any(e => e is DataColumn { CurrentWidth.GridUnitType: GridUnitType.Auto });
+	internal bool IsAnyColumnAuto
+		=> Children.Any(e => e is DataColumn { CurrentWidth.GridUnitType: GridUnitType.Auto });
 
-    internal void ArrangeColumnsAndRows()
-    {
-        InvalidateArrange();
+	internal void ArrangeColumnsAndRows()
+	{
+		InvalidateArrange();
 
-        if (this.FindAscendant<ListView>() is ListView listView)
-        {
-            foreach (var item in listView.Items)
-            {
-                var container = listView.ContainerFromItem(item);
+		if (this.FindAscendant<ListView>() is ListView listView)
+		{
+			foreach (var item in listView.Items)
+			{
+				var container = listView.ContainerFromItem(item);
 
-                if (container is ListViewItem listViewItem &&
-                    listViewItem.ContentTemplateRoot is DataRow row)
-                    row.InvalidateArrange();
-            }
-        }
-    }
+				if (container is ListViewItem listViewItem &&
+					listViewItem.ContentTemplateRoot is DataRow row)
+					row.InvalidateArrange();
+			}
+		}
+	}
 
-    internal void MeasureColumnsAndRowsToFit()
-    {
-        SizingColumnToFit = true;
+	internal void MeasureColumnsAndRowsToFit()
+	{
+		SizingColumnToFit = true;
 
-        InvalidateArrange();
+		InvalidateArrange();
 
-        if (this.FindAscendant<ListView>() is ListView listView)
-        {
-            foreach (var item in listView.Items)
-            {
-                var container = listView.ContainerFromItem(item);
+		if (this.FindAscendant<ListView>() is ListView listView)
+		{
+			foreach (var item in listView.Items)
+			{
+				var container = listView.ContainerFromItem(item);
 
-                if (container is ListViewItem listViewItem &&
-                    listViewItem.ContentTemplateRoot is DataRow row)
-                    row.InvalidateArrange();
-            }
-        }
-    }
+				if (container is ListViewItem listViewItem &&
+					listViewItem.ContentTemplateRoot is DataRow row)
+					row.InvalidateArrange();
+			}
+		}
+	}
 
-    protected override Size MeasureOverride(Size availableSize)
-    {
-        double fixedWidth = 0;
-        double autoSized = 0;
-        double maxHeight = 0;
+	protected override Size MeasureOverride(Size availableSize)
+	{
+		double fixedWidth = 0;
+		double autoSized = 0;
+		double maxHeight = 0;
 
-        var elements =
-            Children
-                .Where(x =>
-                    x is DataColumn dataColumn &&
-                    dataColumn.Visibility == Visibility.Visible)
-                .Cast<DataColumn>();
+		var elements =
+			Children
+				.Where(x =>
+					x is DataColumn dataColumn &&
+					dataColumn.Visibility == Visibility.Visible)
+				.Cast<DataColumn>();
 
-        foreach (DataColumn column in elements)
-            fixedWidth += column.DesiredWidth.Value;
+		foreach (DataColumn column in elements)
+			fixedWidth += column.DesiredWidth.Value;
 
-        foreach (DataColumn column in elements)
-        {
-            if (column.CurrentWidth.IsAbsolute)
-            {
-                column.Measure(new Size(column.CurrentWidth.Value, availableSize.Height));
-            }
-            else
-            {
-                column.Measure(new Size(availableSize.Width - fixedWidth - autoSized, availableSize.Height));
+		foreach (DataColumn column in elements)
+		{
+			if (column.CurrentWidth.IsAbsolute)
+			{
+				column.Measure(new Size(column.CurrentWidth.Value, availableSize.Height));
+			}
+			else
+			{
+				column.Measure(new Size(availableSize.Width - fixedWidth - autoSized, availableSize.Height));
 
-                autoSized += Math.Max(column.DesiredSize.Width, column.MaxChildDesiredWidth);
-            }
+				autoSized += Math.Max(column.DesiredSize.Width, column.MaxChildDesiredWidth);
+			}
 
-            maxHeight = Math.Max(maxHeight, column.DesiredSize.Height);
-        }
+			maxHeight = Math.Max(maxHeight, column.DesiredSize.Height);
+		}
 
-        return new Size(availableSize.Width, maxHeight);
-    }
+		return new Size(availableSize.Width, maxHeight);
+	}
 
-    protected override Size ArrangeOverride(Size finalSize)
-    {
-        double width = 0;
-        double x = 0;
+	protected override Size ArrangeOverride(Size finalSize)
+	{
+		double width = 0;
+		double x = 0;
 
-        var elements =
-            Children
-                .Where(x =>
-                    x is DataColumn dataColumn &&
-                    dataColumn.Visibility == Visibility.Visible)
-                .Cast<DataColumn>();
+		var elements =
+			Children
+				.Where(x =>
+					x is DataColumn dataColumn &&
+					dataColumn.Visibility == Visibility.Visible)
+				.Cast<DataColumn>();
 
-        foreach (DataColumn column in elements)
-        {
-            if (column.CurrentWidth.IsAbsolute)
-            {
-                width = column.CurrentWidth.Value;
-                column.Arrange(new(x, 0, width, finalSize.Height));
-            }
-            else
-            {
-                width = Math.Max(column.DesiredSize.Width, column.MaxChildDesiredWidth);
-                column.Arrange(new(x, 0, width, finalSize.Height));
-            }
+		foreach (DataColumn column in elements)
+		{
+			if (column.CurrentWidth.IsAbsolute)
+			{
+				width = column.CurrentWidth.Value;
+				column.Arrange(new(x, 0, width, finalSize.Height));
+			}
+			else
+			{
+				width = Math.Max(column.DesiredSize.Width, column.MaxChildDesiredWidth);
+				column.Arrange(new(x, 0, width, finalSize.Height));
+			}
 
-            x += width;
-        }
+			x += width;
+		}
 
-        return finalSize;
-    }
+		return finalSize;
+	}
 }
