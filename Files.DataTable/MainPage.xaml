@@ -15,51 +15,112 @@
 		</ResourceDictionary>
 	</Page.Resources>
 
-	<ListView ItemsSource="{x:Bind Items, Mode=OneWay}">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
 
-		<ListView.Header>
-			<Grid
-				Padding="12,0"
-				BorderBrush="{ThemeResource DividerStrokeColorDefaultBrush}"
-				BorderThickness="0,0,0,1">
-				<local:DataTable Height="40" HorizontalAlignment="Stretch">
-					<local:DataColumn
-						MinWidth="0"
-						CanResize="False"
-						DesiredWidth="40" />
-					<local:DataColumn Content="Name" DesiredWidth="180" />
-					<local:DataColumn Content="Date modified" DesiredWidth="180" />
-					<local:DataColumn Content="Type" DesiredWidth="180" />
-					<local:DataColumn Content="Size" DesiredWidth="180" />
-				</local:DataTable>
-			</Grid>
-		</ListView.Header>
+		<Grid Grid.Row="0" Height="8">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="99" />
+				<ColumnDefinition Width="1" />
+				<ColumnDefinition Width="99" />
+				<ColumnDefinition Width="1" />
+				<ColumnDefinition Width="99" />
+				<ColumnDefinition Width="1" />
+				<ColumnDefinition Width="99" />
+				<ColumnDefinition Width="1" />
+				<ColumnDefinition Width="99" />
+				<ColumnDefinition Width="1" />
+				<ColumnDefinition Width="99" />
+				<ColumnDefinition Width="1" />
+				<ColumnDefinition Width="99" />
+				<ColumnDefinition Width="1" />
+			</Grid.ColumnDefinitions>
+			<Border Grid.Column="1" Background="{ThemeResource DividerStrokeColorDefaultBrush}" />
+			<Border Grid.Column="3" Background="{ThemeResource DividerStrokeColorDefaultBrush}" />
+			<Border Grid.Column="5" Background="{ThemeResource DividerStrokeColorDefaultBrush}" />
+			<Border Grid.Column="7" Background="{ThemeResource DividerStrokeColorDefaultBrush}" />
+			<Border Grid.Column="9" Background="{ThemeResource DividerStrokeColorDefaultBrush}" />
+			<Border Grid.Column="11" Background="{ThemeResource DividerStrokeColorDefaultBrush}" />
+			<Border Grid.Column="13" Background="{ThemeResource DividerStrokeColorDefaultBrush}" />
+		</Grid>
 
-		<ListView.ItemTemplate>
-			<DataTemplate x:DataType="local:StorageItem">
-				<local:DataRow HorizontalAlignment="Left">
-					<Image
-						Width="20"
-						Height="20"
-						HorizontalAlignment="Left"
-						Source="{x:Bind ThumbnailPath}" />
-					<TextBlock Text="{x:Bind Name}" />
-					<TextBlock Text="{x:Bind DateModified}" />
-					<TextBlock Text="{x:Bind Type}" />
-					<TextBlock Text="{x:Bind Size}" />
-				</local:DataRow>
-			</DataTemplate>
-		</ListView.ItemTemplate>
+		<ListView Grid.Row="1" ItemsSource="{x:Bind Items, Mode=OneWay}">
 
-		<ListView.ItemContainerStyle>
-			<Style BasedOn="{StaticResource DefaultListViewItemStyle}" TargetType="ListViewItem">
-				<Setter Property="HorizontalContentAlignment" Value="Stretch" />
-				<Setter Property="VerticalContentAlignment" Value="Center" />
-				<Setter Property="HorizontalAlignment" Value="Left" />
-				<Setter Property="Margin" Value="8,0" />
-			</Style>
-		</ListView.ItemContainerStyle>
+			<ListView.Header>
+				<Grid
+					Padding="12,0"
+					BorderBrush="{ThemeResource DividerStrokeColorDefaultBrush}"
+					BorderThickness="0,0,0,1">
+					<local:DataTable Height="40" HorizontalAlignment="Stretch">
+						<local:DataColumn
+							MinWidth="0"
+							CanResize="False"
+							DesiredWidth="40" />
+						<local:DataColumn Content="Name" DesiredWidth="180" />
+						<local:DataColumn Content="Date modified" DesiredWidth="180" />
+						<local:DataColumn Content="Type" DesiredWidth="180" />
+						<local:DataColumn Content="Size" DesiredWidth="180" />
+					</local:DataTable>
+				</Grid>
+			</ListView.Header>
 
-	</ListView>
+			<ListView.ItemTemplate>
+				<DataTemplate x:DataType="local:StorageItem">
+					<local:DataRow HorizontalAlignment="Left">
+						<Image
+							Width="20"
+							Height="20"
+							HorizontalAlignment="Left"
+							Source="{x:Bind ThumbnailPath}" />
+						<TextBlock Text="{x:Bind Name}" TextTrimming="CharacterEllipsis" />
+						<TextBlock Text="{x:Bind DateModified}" TextTrimming="CharacterEllipsis" />
+						<TextBlock Text="{x:Bind Type}" TextTrimming="CharacterEllipsis" />
+						<TextBlock Text="{x:Bind Size}" TextTrimming="CharacterEllipsis" />
+					</local:DataRow>
+				</DataTemplate>
+			</ListView.ItemTemplate>
+
+			<ListView.ItemContainerStyle>
+				<Style BasedOn="{StaticResource DefaultListViewItemStyle}" TargetType="ListViewItem">
+					<Setter Property="HorizontalContentAlignment" Value="Stretch" />
+					<Setter Property="VerticalContentAlignment" Value="Center" />
+					<Setter Property="HorizontalAlignment" Value="Left" />
+					<Setter Property="Margin" Value="8,0" />
+				</Style>
+			</ListView.ItemContainerStyle>
+
+		</ListView>
+
+		<Grid Grid.Row="2" Height="8">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="99" />
+				<ColumnDefinition Width="1" />
+				<ColumnDefinition Width="99" />
+				<ColumnDefinition Width="1" />
+				<ColumnDefinition Width="99" />
+				<ColumnDefinition Width="1" />
+				<ColumnDefinition Width="99" />
+				<ColumnDefinition Width="1" />
+				<ColumnDefinition Width="99" />
+				<ColumnDefinition Width="1" />
+				<ColumnDefinition Width="99" />
+				<ColumnDefinition Width="1" />
+				<ColumnDefinition Width="99" />
+				<ColumnDefinition Width="1" />
+			</Grid.ColumnDefinitions>
+			<Border Grid.Column="1" Background="{ThemeResource DividerStrokeColorDefaultBrush}" />
+			<Border Grid.Column="3" Background="{ThemeResource DividerStrokeColorDefaultBrush}" />
+			<Border Grid.Column="5" Background="{ThemeResource DividerStrokeColorDefaultBrush}" />
+			<Border Grid.Column="7" Background="{ThemeResource DividerStrokeColorDefaultBrush}" />
+			<Border Grid.Column="9" Background="{ThemeResource DividerStrokeColorDefaultBrush}" />
+			<Border Grid.Column="11" Background="{ThemeResource DividerStrokeColorDefaultBrush}" />
+			<Border Grid.Column="13" Background="{ThemeResource DividerStrokeColorDefaultBrush}" />
+		</Grid>
+
+	</Grid>
 
 </Page>
