@@ -18,13 +18,21 @@
 	<ListView ItemsSource="{x:Bind Items, Mode=OneWay}">
 
 		<ListView.Header>
-			<local:DataTable Height="40" HorizontalAlignment="Stretch">
-				<local:DataColumn Width="60" CanResize="False" />
-				<local:DataColumn Content="Name" />
-				<local:DataColumn Content="Date modified" />
-				<local:DataColumn Content="Type" />
-				<local:DataColumn Content="Size" />
-			</local:DataTable>
+			<Grid
+				Padding="12,0"
+				BorderBrush="{ThemeResource DividerStrokeColorDefaultBrush}"
+				BorderThickness="0,0,0,1">
+				<local:DataTable Height="40" HorizontalAlignment="Stretch">
+					<local:DataColumn
+						MinWidth="0"
+						CanResize="False"
+						DesiredWidth="40" />
+					<local:DataColumn Content="Name" DesiredWidth="180" />
+					<local:DataColumn Content="Date modified" DesiredWidth="180" />
+					<local:DataColumn Content="Type" DesiredWidth="180" />
+					<local:DataColumn Content="Size" DesiredWidth="180" />
+				</local:DataTable>
+			</Grid>
 		</ListView.Header>
 
 		<ListView.ItemTemplate>
