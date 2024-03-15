@@ -7,13 +7,12 @@
 	xmlns:wctconverters="using:CommunityToolkit.WinUI.Converters">
 
 	<wctconverters:BoolToVisibilityConverter x:Key="DataColumnBoolToVisibilityConverter" />
+	<wctconverters:BoolNegationConverter x:Key="BoolNegationConverter" />
 
-	<!--  Implicitly applied default style  -->
 	<Style BasedOn="{StaticResource DefaultDataColumnStyle}" TargetType="local:DataColumn" />
 
 	<Style x:Key="DefaultDataColumnStyle" TargetType="local:DataColumn">
 		<Style.Setters>
-			<!--  TODO: This is going to be different between ListView and HeaderedItemsControl, how do we want to handle?  -->
 			<Setter Property="Padding" Value="12,0" />
 			<Setter Property="MinWidth" Value="64" />
 			<Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -32,14 +31,8 @@
 								<ColumnDefinition Width="Auto" />
 							</Grid.ColumnDefinitions>
 
-							<Border
-								Grid.ColumnSpan="2"
-								Height="1"
-								VerticalAlignment="Bottom"
-								BorderBrush="{ThemeResource DividerStrokeColorDefault}"
-								BorderThickness="1" />
-
 							<TextBlock
+								Grid.Column="0"
 								Margin="{TemplateBinding Padding}"
 								HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
 								VerticalAlignment="{TemplateBinding VerticalContentAlignment}"

@@ -12,15 +12,13 @@ namespace Files.DataTable;
 [TemplatePart(Name = nameof(PART_ColumnSizer), Type = typeof(ContentSizer))]
 public partial class DataColumn : ButtonBase
 {
-	private static GridLength StarLength = new GridLength(1, GridUnitType.Star);
-
 	private ContentSizer? PART_ColumnSizer;
 
-	private WeakReference<DataTable>? _parent;
+	private DataTable? _parent;
 
 	public DataColumn()
 	{
-		this.DefaultStyleKey = typeof(DataColumn);
+		DefaultStyleKey = typeof(DataColumn);
 	}
 
 	protected override void OnApplyTemplate()
@@ -28,8 +26,8 @@ public partial class DataColumn : ButtonBase
 		if (PART_ColumnSizer != null)
 		{
 			PART_ColumnSizer.TargetControl = null;
-			PART_ColumnSizer.ManipulationDelta -= this.PART_ColumnSizer_ManipulationDelta;
-			PART_ColumnSizer.ManipulationCompleted -= this.PART_ColumnSizer_ManipulationCompleted;
+			PART_ColumnSizer.ManipulationDelta -= PART_ColumnSizer_ManipulationDelta;
+			PART_ColumnSizer.ManipulationCompleted -= PART_ColumnSizer_ManipulationCompleted;
 		}
 
 		PART_ColumnSizer = GetTemplateChild(nameof(PART_ColumnSizer)) as ContentSizer;
@@ -37,16 +35,11 @@ public partial class DataColumn : ButtonBase
 		if (PART_ColumnSizer != null)
 		{
 			PART_ColumnSizer.TargetControl = this;
-			PART_ColumnSizer.ManipulationDelta += this.PART_ColumnSizer_ManipulationDelta;
-			PART_ColumnSizer.ManipulationCompleted += this.PART_ColumnSizer_ManipulationCompleted;
+			PART_ColumnSizer.ManipulationDelta += PART_ColumnSizer_ManipulationDelta;
+			PART_ColumnSizer.ManipulationCompleted += PART_ColumnSizer_ManipulationCompleted;
 		}
 
-		// Get DataTable parent weak reference for when we manipulate columns.
-		var parent = this.FindAscendant<DataTable>();
-		if (parent != null)
-		{
-			_parent = new(parent);
-		}
+		_parent = this.FindAscendant<DataTable>();
 
 		base.OnApplyTemplate();
 	}
@@ -63,14 +56,9 @@ public partial class DataColumn : ButtonBase
 
 	private void ColumnResizedByUserSizer()
 	{
-		// Update our internal representation to be our size now as a fixed value.
-		CurrentWidth = new(this.ActualWidth);
+		CurrentWidth = new(ActualWidth);
 
-		// Notify the rest of the table to update
-		if (_parent?.TryGetTarget(out DataTable? parent) == true
-			&& parent != null)
-		{
-			parent.ColumnResized();
-		}
+		if (_parent != null)
+			_parent?.ColumnResized();
 	}
 }
