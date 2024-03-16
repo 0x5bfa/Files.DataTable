@@ -79,7 +79,7 @@ public partial class DataRow : Panel
 					if (dataColumn.CanResize)
 					{
 						// Avoid using the area of the next column
-						child.MaxWidth = width;
+						child.MaxWidth = width - 12;
 						child.Margin = new(0, 0, 12, 0);
 					}
 
