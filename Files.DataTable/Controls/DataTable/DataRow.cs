@@ -53,56 +53,44 @@ public partial class DataRow : Panel
 			for (int i = 0; i < Children.Count; i++)
 			{
 				if (_parentTable.Children[i] is DataColumn { CurrentWidth.GridUnitType: GridUnitType.Pixel } pixel)
-				{
 					Children[i].Measure(new(pixel.DesiredWidth.Value, availableSize.Height));
-				}
 
 				maxHeight = Math.Max(maxHeight, Children[i].DesiredSize.Height);
 			}
 		}
 
-		// Otherwise, return our parent's size as the desired size.
 		return new(_parentTable?.DesiredSize.Width ?? availableSize.Width, maxHeight);
 	}
 
 	protected override Size ArrangeOverride(Size finalSize)
 	{
-		int column = 0;
+		int index = 0;
 		double x = 0;
-
-		double spacing = 0;
-
 		double width = 0;
 
 		if (_parentTable != null)
 		{
-			int i = 0;
-
-			foreach (UIElement child in Children.Where(static e => e.Visibility == Visibility.Visible))
+			foreach (FrameworkElement child in Children.Where(static e => e.Visibility == Visibility.Visible).Cast<FrameworkElement>())
 			{
-				// TODO: Need to check Column visibility here as well...
-				if (column < _parentTable.Children.Count)
+				if (_parentTable.Children[index] is DataColumn dataColumn)
 				{
-					// TODO: This is messy...
-					width = (_parentTable.Children[column++] as DataColumn)?.ActualWidth ?? 0;
+					width = dataColumn.ActualWidth;
+
+					if (dataColumn.CanResize)
+					{
+						// Avoid using the area of the next column
+						child.MaxWidth = width;
+						child.Margin = new(0, 0, 12, 0);
+					}
+
+					child.Arrange(new(x, 0, width, finalSize.Height));
 				}
 
-				// Note: For Auto, since we measured our children and bubbled that up to the DataTable layout, then the DataColumn size we grab above should account for the largest of our children.
-				if (i == 0)
-				{
-					child.Arrange(new Rect(x, 0, width, finalSize.Height));
-				}
-				else
-				{
-					// If we're in a tree, remove the indentation from the layout of columns beyond the first.
-					child.Arrange(new Rect(x, 0, width, finalSize.Height));
-				}
-
-				x += width + spacing;
-				i++;
+				x += width;
+				index++;
 			}
 
-			return new Size(x - spacing, finalSize.Height);
+			return new Size(x, finalSize.Height);
 		}
 
 		return finalSize;

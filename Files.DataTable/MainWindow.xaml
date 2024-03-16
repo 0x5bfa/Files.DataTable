@@ -39,11 +39,20 @@
 				<ColumnDefinition Width="*" />
 			</Grid.ColumnDefinitions>
 
-			<TextBlock
+			<StackPanel
 				HorizontalAlignment="Center"
 				VerticalAlignment="Center"
-				Style="{StaticResource CaptionTextBlockStyle}"
-				Text="Sidebar area" />
+				Spacing="4">
+				<TextBlock
+					HorizontalAlignment="Center"
+					Style="{StaticResource CaptionTextBlockStyle}"
+					Text="Sidebar area" />
+				<Button
+					HorizontalAlignment="Center"
+					Background="Transparent"
+					BorderThickness="0"
+					Content="Sample button" />
+			</StackPanel>
 
 			<Grid
 				Grid.Column="1"
@@ -56,6 +65,35 @@
 					<RowDefinition Height="1" />
 					<RowDefinition Height="*" />
 				</Grid.RowDefinitions>
+
+				<Grid
+					Grid.Row="0"
+					Height="8"
+					VerticalAlignment="Bottom">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="99" />
+						<ColumnDefinition Width="1" />
+						<ColumnDefinition Width="99" />
+						<ColumnDefinition Width="1" />
+						<ColumnDefinition Width="99" />
+						<ColumnDefinition Width="1" />
+						<ColumnDefinition Width="99" />
+						<ColumnDefinition Width="1" />
+						<ColumnDefinition Width="99" />
+						<ColumnDefinition Width="1" />
+						<ColumnDefinition Width="99" />
+						<ColumnDefinition Width="1" />
+						<ColumnDefinition Width="99" />
+						<ColumnDefinition Width="1" />
+					</Grid.ColumnDefinitions>
+					<Border Grid.Column="1" Background="{ThemeResource DividerStrokeColorDefaultBrush}" />
+					<Border Grid.Column="3" Background="{ThemeResource DividerStrokeColorDefaultBrush}" />
+					<Border Grid.Column="5" Background="{ThemeResource DividerStrokeColorDefaultBrush}" />
+					<Border Grid.Column="7" Background="{ThemeResource DividerStrokeColorDefaultBrush}" />
+					<Border Grid.Column="9" Background="{ThemeResource DividerStrokeColorDefaultBrush}" />
+					<Border Grid.Column="11" Background="{ThemeResource DividerStrokeColorDefaultBrush}" />
+					<Border Grid.Column="13" Background="{ThemeResource DividerStrokeColorDefaultBrush}" />
+				</Grid>
 
 				<Border
 					Grid.Row="1"

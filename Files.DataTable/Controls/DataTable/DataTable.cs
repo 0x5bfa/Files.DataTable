@@ -41,13 +41,15 @@ public partial class DataTable : Panel
 		var elements = Children.Where(static e => e.Visibility == Visibility.Visible && e is DataColumn).Cast<DataColumn>();
 
 		double x = 0;
+		int index = 0;
 
 		foreach (DataColumn column in elements)
 		{
 			if (column.CurrentWidth.IsAbsolute)
 				column.Arrange(new Rect(x, 0, column.CurrentWidth.Value, finalSize.Height));
 
-			x += column.CurrentWidth.Value + ColumnSpacing;
+			x += column.CurrentWidth.Value;
+			index++;
 		}
 
 		return finalSize;
